@@ -114,7 +114,8 @@ function createObstacle() {
 function drawObstacle() {
 	for(var j = 0; j < obstacleArray.length; j++) {
 		if(obstacleArray[j].x != ball.x && obstacleArray[j].y != ball.y) {
-		ctx.drawImage(snorlax, obstacleArray[j].x, obstacleArray[j].y);}
+			ctx.drawImage(snorlax, obstacleArray[j].x, obstacleArray[j].y);
+		}
 	}
 };
 
