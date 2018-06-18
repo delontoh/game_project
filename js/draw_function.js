@@ -1,13 +1,13 @@
+
+function drawModule(){
+	
+	startGame.style.display = "none";
+
 // **Draw images. Background, Snake, Food, Score**
 
 function draw() {
 
 	ctx.drawImage(background, 0, 0);	// draw background at fixed position
-
-	// ctx.fillStyle = 'gray';
-	// ctx.fillRect(0, 0, 608, 608);
-	// ctx.strokeStyle = 'black'
-	// ctx.strokeRect(0, 0, 608, 608);
 		
 	for(var i = 0; i < snake.length; i++) {		// loop through snake ARRAY
 		if(i == 0) {	
@@ -23,7 +23,9 @@ function draw() {
 
 	ctx.drawImage(pokeBall, ball.x, ball.y);	// draw ball at ball's co-ordinates which are randomized
 	
-	drawObstacle();	// call draw obstacle
+	drawObstacle();	// call drawObstacle function
+
+	gameMusic.play(); // play game background music
 
 
 	// Old snake head position
@@ -56,6 +58,7 @@ function draw() {
 	// When snake eats ball => increase score AND create new ball.
 	if(snakeX == ball.x && snakeY == ball.y) {
 		score++;
+		ballSound.play();
 		ball = {
 			x: Math.floor(Math.random() * 17 + 1) * unit,
 			y: Math.floor(Math.random() * 15 + 3) * unit
@@ -67,23 +70,34 @@ function draw() {
 
 
 	// Check for Game over conditions - Collision between snake/body and snake/boundry
-	if(snakeX < 0 * unit || snakeY < 0 * unit  || snakeX > 18 * unit || snakeY > 18 * unit || checkCollision(newHead, snake) || obstacleCollision(newHead, obstacleArray)) {
-
-		 clearInterval(speed);
-		 console.log(newHead);
-		 console.log(snake);
-		 console.log(obstacleArray);
+	if(snakeX < 0 * unit || snakeY < 0 * unit  || snakeX > 18 * unit || snakeY > 18 * unit || checkCollision(newHead, snake) || obstacleCollision(newHead, obstacleArray)){
+		clearInterval(speed);
+		gameMusic.volume = 0;
+		gameOver.play();
+		gameOver.volume = 0.3;
+		popUp.style.display = "block";
+		document.getElementById("score").innerHTML = score;	// add innerHTML to display score
+		tryAgain.addEventListener("click", function() {		// add event listener to Try Again button to reload page
+			location.reload();
+		});
+		console.log(newHead);
+		console.log(obstacleArray);
+		console.log(score);
 	};
 
 
 	// push New Head to front of ARRAY to make it index[0]
 	snake.unshift(newHead);	
 
-	ctx.fillStyle = 'white';	// draw Score
+	// draw Score
+	ctx.fillStyle = 'yellow';	
 	ctx.font = '35px "Comic Sans MS", cursive, sans-serif';
-	ctx.fillText(score, 2 * unit, 2 * unit);
-};
+	ctx.fillText(score, 1 * unit, 1.5 * unit);
 
-var speed = setInterval(draw, 120);
+}; // end of draw function
 
 setInterval(createObstacle, 5000);
+
+var speed = setInterval(draw, 180);
+
+}; // end of drawModule function

@@ -2,23 +2,35 @@
 <html>
 <head>
 	<meta charset= 'utf-8' />
-	<title>Snake Game</title>
+	<title>Catch 'Em All</title>
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-	<div class= "game">
-		<div id= "homepage">
-			<div id= "title">Snake Game</div>
+	<div class= "homepage">
+		<div id= "title"><img src= "images/title3.png"></div>
 
-			<canvas id= "gamecanvas" width= "608" height= "608"></canvas>
+		
+			<div id= "overlay">
+				<div id= "gameOver" class="modal">
+					<div id= "model-content">
+						<p>Game Over!<p>
+							<p>Your Highscore is: <span id="score"></span></p>
+						</div>
+						<button id= "retry" onclick="retry()">Try Again!</button>
+					</div>		
+				</div>
+				<canvas id= "gamecanvas" width= "608" height= "608"></canvas>
+			</div>
+		
+
+		<div id= "start">
+			<div id= "btn">START GAME</div>
 		</div>
-
-		<p>Press start button!</p>
-		<button id= "btn">START</button>
 	</div>
 
 	<script type="text/javascript" src= "js/logic.js"></script>
 	<script type="text/javascript" src= "js/draw_function.js"></script>
 </body>
-	</html>
+</html>
