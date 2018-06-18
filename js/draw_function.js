@@ -11,14 +11,11 @@ function draw() {
 		
 	for(var i = 0; i < snake.length; i++) {		// loop through snake ARRAY
 		if(i == 0) {	
-			// ctx.fillStyle = 'blue';	// fill snake Head color
 			ctx.drawImage(pikachu, snake[i].x, snake[i].y);
 		}
 		else {
-			// ctx.fillStyle = 'white';	// fill snake Body color
 			ctx.drawImage(pokeBall, snake[i].x - 1, snake[i].y - 1);
 		}
-		// ctx.fillRect(snake[i].x, snake[i].y, unit, unit);  // add outline. width and height equals to 30px
 	};
 
 	ctx.drawImage(pokeBall, ball.x, ball.y);	// draw ball at ball's co-ordinates which are randomized
@@ -72,7 +69,7 @@ function draw() {
 	// Check for Game over conditions - Collision between snake/body and snake/boundry
 	if(snakeX < 0 * unit || snakeY < 0 * unit  || snakeX > 18 * unit || snakeY > 18 * unit || checkCollision(newHead, snake) || obstacleCollision(newHead, obstacleArray)){
 		clearInterval(speed);
-		gameMusic.volume = 0;
+		gameMusic.volume = 0;	
 		gameOver.play();
 		gameOver.volume = 0.3;
 		popUp.style.display = "block";
@@ -98,6 +95,14 @@ function draw() {
 
 setInterval(createObstacle, 5000);
 
-var speed = setInterval(draw, 180);
+var speed;
+
+if(score <= 5) {
+	speed = setInterval(draw, 150);
+}
+else if(score >= 6) {
+	clearInterval(speed);
+	speed = setInterval(draw, 90);
+};
 
 }; // end of drawModule function
