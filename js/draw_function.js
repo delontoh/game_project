@@ -77,9 +77,9 @@ function draw() {
 		tryAgain.addEventListener("click", function() {		// add event listener to Try Again button to reload page
 			location.reload();
 		});
-		console.log(newHead);
-		console.log(obstacleArray);
-		console.log(score);
+		// console.log(newHead);
+		// console.log(obstacleArray);
+		// console.log(score);
 	};
 
 
@@ -95,14 +95,6 @@ function draw() {
 
 setInterval(createObstacle, 5000);
 
-var speed;
-
-if(score <= 5) {
-	speed = setInterval(draw, 150);
-}
-else if(score >= 6) {
-	clearInterval(speed);
-	speed = setInterval(draw, 90);
-};
+var speed = setInterval(draw, 150);
 
 }; // end of drawModule function

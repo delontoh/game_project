@@ -64,7 +64,7 @@ var ball = {
 };
 
 // create obstacle/snorlax
-var obstacleArray = []
+var obstacleArray = [];
 
 
 
@@ -113,9 +113,9 @@ function createObstacle() {
 // Loop through the ARRAY above and draw image based on X and Y values of OBJECT.
 function drawObstacle() {
 	for(var j = 0; j < obstacleArray.length; j++) {
-		if(obstacleArray[j].x != ball.x && obstacleArray[j].y != ball.y) {
+		// if(obstacleArray[j].x != ball.x && obstacleArray[j].y != ball.y) {
 			ctx.drawImage(snorlax, obstacleArray[j].x, obstacleArray[j].y);
-		}
+		// }
 	}
 };
 
