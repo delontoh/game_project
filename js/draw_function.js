@@ -62,7 +62,7 @@ function draw() {
 		}
 	}
 	else { 
-		snake.pop(); //  keep removing tail until snake eats ball
+		snake.pop(); //  keep removing tail until snake eats ball=> this returns the popped element
 	};
 
 
@@ -93,7 +93,7 @@ function draw() {
 
 }; // end of draw function
 
-setInterval(createObstacle, 5000);
+setInterval(createObstacle, 5500);
 
 var speed = setInterval(draw, 150);
 
